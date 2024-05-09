@@ -31,7 +31,7 @@ async function post(accountIndex, text) {
 
     getTimeLine()
 
-    text = ''
+    document.querySelector(`#post-input`).value = ''
 
 }
 
