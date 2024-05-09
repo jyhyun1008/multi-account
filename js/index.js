@@ -29,7 +29,7 @@ if (localStorage.getItem('csv')) {
 }
 
 if (localStorage.getItem('accounts')) {
-    accounts = localStorage.getItem('accounts')
+    accounts = JSON.parse(localStorage.getItem('accounts'))
     if (accounts.length == 0) {
         location.href = './index.html?page=signin'
     }

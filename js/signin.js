@@ -67,7 +67,7 @@ if (page == 'signin') {
                     "token": token
                 })
 
-                localStorage.setItem("accounts", accounts)
+                localStorage.setItem("accounts", JSON.stringify(accounts))
                 localStorage.removeItem("lastSessionId")
                 localStorage.removeItem("lastHost")
 
