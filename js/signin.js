@@ -17,7 +17,7 @@ function changeDisabled(e) {
 
 if (page == 'signin') {
 
-    document.querySelector('#post-box').innerHTML = '<div id="host-label">계정이 있는 인스턴스 주소:</div><input id="host-input" oninput="changeDisabled(this)"><button id="host-button" disabled="true" onclick="signin(document.querySelector("#host-input").value)">로그인!</button>'
+    document.querySelector('#post-box').innerHTML = '<div id="host-label">계정이 있는 인스턴스 주소:</div><input id="host-input" oninput="changeDisabled(this)"><button id="host-button" disabled="true" onclick="signin(document.querySelector(`#host-input`).value)">로그인!</button>'
 
 } else if (page == 'callback') {
 
