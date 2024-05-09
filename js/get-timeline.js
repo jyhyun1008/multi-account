@@ -3,7 +3,7 @@ if (accounts.length > 0) {
     async function getTimeLine() {
 
         var parsedCSV = csv.split('\n')
-        for (var i=0; i<parsedCSV.length; i++) {
+        for (var i=0; i<parsedCSV.length - 1; i++) {
             var parsedText = parsedCSV[i].split(',')[0]
             var parsedIndex = parseInt(parsedCSV[i].split(',')[1])
 
