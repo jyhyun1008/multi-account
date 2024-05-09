@@ -31,6 +31,8 @@ async function post(accountIndex, text) {
 
     getTimeLine()
 
+    text = ''
+
 }
 
 if (accounts.length > 0 && mode == 'manual') {
