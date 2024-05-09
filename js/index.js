@@ -1,3 +1,4 @@
+const COLORCHIP = ['#F8F3E8', '#E6F8F6', '#F8DBB8', '#CDE8E6', '#F6C7B3', '#5B96A9']
 
 var accounts = []
 var csv = ''
