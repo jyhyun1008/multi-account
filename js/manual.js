@@ -8,7 +8,7 @@ function changePostDisabled(e) {
 
 async function post(accountIndex, text) {
 
-    var vis = 'public'
+    var vis = accounts[accountIndex].vis
 
     var url = 'https://'+accounts[accountIndex].host+'/api/notes/create'
     var param = {
@@ -49,7 +49,5 @@ if (accounts.length > 0 && mode == 'manual') {
         for (var i=0; i<accounts.length; i++) {
             document.querySelector('#select-input').innerHTML += '<option value="'+i+'">'+accounts[i].role+' (@'+accounts[i].username+'@'+accounts[i].host+')</option>'
         }
-
     }
-
 }

@@ -29,7 +29,7 @@ if (page == 'signin') {
 
 } else if (page == 'callback') {
 
-    function register(value) {
+    function register(value, vis) {
 
         if (localStorage.getItem('lastSessionId')) {
             var sessionId = localStorage.getItem('lastSessionId')
@@ -58,6 +58,7 @@ if (page == 'signin') {
                     "username": username,
                     "avatar": avatar,
                     "role": value,
+                    "vis": vis,
                     "token": token
                 })
 
@@ -72,6 +73,6 @@ if (page == 'signin') {
         }
     }
 
-    document.querySelector('#post-box').innerHTML = '<div id="role-label">이 계정의 역할:</div><input id="role-input" oninput="changeRoleDisabled(this)"><button id="role-button" disabled="true" onclick="register(document.querySelector(`#role-input`).value)">확인</button>'
+    document.querySelector('#post-box').innerHTML = '<div id="role-label">이 계정의 역할:</div><input id="role-input" oninput="changeRoleDisabled(this)"><div id="role-label">고정 공개범위:</div><select id="vis-input"><option value="public">공개</option><option value="home">홈</option><option value="followers">팔로워</option></select><button id="role-button" disabled="true" onclick="register(document.querySelector(`#role-input`).value, document.querySelector(`#vis-input`).value)">확인</button>'
 
-} 
+}
