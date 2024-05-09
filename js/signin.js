@@ -58,8 +58,8 @@ if (page == 'signin') {
                 var avatar = tokenRes.avatar
 
                 accounts.push({
-                    "host": host,
-                    "sessionId": uuid,
+                    "host": sessionHost,
+                    "sessionId": sessionId,
                     "userId": userId,
                     "username": username,
                     "avatar": avatar,
