@@ -74,7 +74,7 @@ if (page == 'signin') {
                 location.href = './index.html'
             })
         } else {
-            alret('잘못된 접근입니다.')
+            alert('잘못된 접근입니다.')
         }
     })
 } 
