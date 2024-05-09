@@ -45,7 +45,7 @@ button {
     display: flex;
     flex-direction: column;
     gap: 12px;
-    height: calc(100vh - 270px);
+    height: calc(100vh - 320px);
     overflow: scroll;
 }
 
