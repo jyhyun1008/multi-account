@@ -25,7 +25,7 @@ if (page == 'signin') {
 
 } else if (page == 'callback') {
 
-    document.querySelector('#post-box').innerHTML = '<div id="role-label">이 계정의 역할:</div><input id="role-input"><button id="role-button" disabled="true">로그인!</button>'
+    document.querySelector('#post-box').innerHTML = '<div id="role-label">이 계정의 역할:</div><input id="role-input"><button id="role-button" disabled="true">확인</button>'
 
     document.querySelector('#role-input').addEventListener('input', (e) => {
         if (document.querySelector('#role-input').value != '') {
