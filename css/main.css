@@ -43,6 +43,8 @@ button {
     display: flex;
     flex-direction: column;
     gap: 12px;
+    height: calc(100vh - 270px);
+    overflow: scroll;
 }
 
 .notes {

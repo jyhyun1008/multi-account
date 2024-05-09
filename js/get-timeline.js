@@ -16,7 +16,7 @@ if (accounts.length > 0) {
         var result = await data.json()
     
         for (var i=0; i<result.length;i++) {
-            document.querySelector('#note-box').innerHTML += '<div class="notes"><div class="notes-user">@'+result[i].user.username+'@'+result[i].user.host+'</div><div class="notes-text">'+result[i].text+'</div></div>'
+            document.querySelector('#timeline-box').innerHTML += '<div class="notes"><div class="notes-user">@'+result[i].user.username+'@'+result[i].user.host+'</div><div class="notes-text">'+result[i].text+'</div></div>'
         }
     }
 
