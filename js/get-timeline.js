@@ -20,4 +20,6 @@ if (accounts.length > 0) {
         }
     }
 
+    getTimeLine()
+
 }
