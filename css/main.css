@@ -23,6 +23,7 @@ input, textarea, select {
     padding: 5px;
     border-radius: 10px;
     border: 1px solid black;
+    font-size: 1.05em;
 }
 
 button {
@@ -30,6 +31,7 @@ button {
     padding: 5px;
     border-radius: 10px;
     border: 1px solid black;
+    font-size: 1.05em;
 }
 
 #others-box {
