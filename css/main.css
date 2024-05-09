@@ -5,7 +5,7 @@
     font-style: normal;
 }
 
-body, button, input {
+body, button, input, textarea {
     font-family: 'ONE-Mobile-POP';
 }
 
@@ -18,7 +18,7 @@ body, button, input {
     margin: 10px auto;
 }
 
-input {
+input, textarea, select {
     width: auto;
     padding: 5px;
     border-radius: 10px;
@@ -45,7 +45,7 @@ button {
     gap: 12px;
 }
 
-#others-box > div > div {
+.notes {
     border: 1px solid black;
     padding: 10px;
     border-radius: 10px;
