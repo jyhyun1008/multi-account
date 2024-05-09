@@ -52,6 +52,8 @@ if (page == 'signin') {
             .then((tokenData) => {return tokenData.json()})
             .then((tokenRes) => {
 
+                console.log(tokenRes)
+
                 var token = tokenRes.token
                 var userId = tokenRes.id
                 var username = tokenRes.username
@@ -71,7 +73,7 @@ if (page == 'signin') {
                 localStorage.removeItem("lastSessionId")
                 localStorage.removeItem("lastHost")
 
-                location.href = './index.html'
+                //location.href = './index.html'
             })
         } else {
             alert('잘못된 접근입니다.')
