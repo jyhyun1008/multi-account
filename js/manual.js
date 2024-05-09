@@ -19,6 +19,8 @@ function changePostDisabled(e) {
 }
 
 async function translategpt(text) {
+    document.querySelector('#gpt-button').disabled = true
+    document.querySelector('#post-button').disabled = true
 
     var msgs = [{"role": "system", "content": "Make the following (after the colon) sentence into a pretty and polite Korean sentence. Please print out only the content WITHOUT quotation marks:"}]
 
@@ -39,6 +41,8 @@ async function translategpt(text) {
     }
     var data = await fetch(sendChatUrl, sendChatParam)
     var result = await data.json()
+    document.querySelector('#gpt-button').disabled = true
+    document.querySelector('#post-button').disabled = false
 
     if (result.choices) {
         var response = result.choices[0].message.content
