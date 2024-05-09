@@ -42,11 +42,14 @@ button, select {
 
 #others-box > div {
     width: 100%;
+    height: calc(100vh - 320px);
+    overflow: scroll;
+}
+
+#note-box, #timeline-box {
     display: flex;
     flex-direction: column;
     gap: 12px;
-    height: calc(100vh - 320px);
-    overflow: scroll;
 }
 
 .notes {
