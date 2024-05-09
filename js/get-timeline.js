@@ -2,6 +2,14 @@ if (accounts.length > 0) {
 
     async function getTimeLine() {
 
+        var parsedCSV = csv.split('\n')
+        for (var i=0; i<parsedCSV.length; i++) {
+            var parsedText = parsedCSV[i].split(',')[0]
+            var parsedIndex = parseInt(parsedCSV[i].split(',')[1])
+
+            document.querySelector('#note-box').innerHTML += '<div class="notes"><div class="notes-user">@'+accounts[parsedIndex].role+'</div><div class="notes-text">'+parsedText+'</div></div>'
+        }
+
         var url = 'https://'+accounts[0].host+'/api/notes/global-timeline'
         var param = {
             method: 'POST',
@@ -29,13 +37,5 @@ if (accounts.length > 0) {
     }
 
     getTimeLine()
-
-    var parsedCSV = csv.split('\n')
-    for (var i=0; i<parsedCSV.length; i++) {
-        var parsedText = parsedCSV[i].split(',')[0]
-        var parsedIndex = parseInt(parsedCSV[i].split(',')[1])
-
-        document.querySelector('#note-box').innerHTML += '<div class="notes"><div class="notes-user">@'+accounts[parsedIndex].role+'</div><div class="notes-text">'+parsedText+'</div></div>'
-    }
 
 }

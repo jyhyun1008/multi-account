@@ -29,6 +29,8 @@ async function post(accountIndex, text) {
     csv += text.replace(/\,/gm, '&comma;') + ',' + accountIndex + '\n'
     localStorage.setItem('csv', csv)
 
+    getTimeLine()
+
 }
 
 if (accounts.length > 0 && mode == 'manual') {
