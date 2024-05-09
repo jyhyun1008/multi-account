@@ -5,5 +5,6 @@ if (accounts.length > 0 && mode == 'manual') {
     for (var i=0; i<accounts.length; i++) {
         document.querySelector('#select-box').innerHTML += '<option value="'+i+'">@'+accounts[i].username+'@'+accounts[i].host+'</option>'
     }
+    document.querySelector('#select-box').innerHTML += '</select>'
 
 }
