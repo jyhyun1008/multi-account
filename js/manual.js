@@ -1,8 +1,8 @@
 function changePostDisabled(e) {
     if (e.value != '') {
-        document.querySelector('#host-button').disabled = false
+        document.querySelector('#post-button').disabled = false
     } else {
-        document.querySelector('#host-button').disabled = true
+        document.querySelector('#post-button').disabled = true
     }
 }
 
