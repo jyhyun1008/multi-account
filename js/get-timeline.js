@@ -16,7 +16,15 @@ if (accounts.length > 0) {
         var result = await data.json()
     
         for (var i=0; i<result.length;i++) {
-            document.querySelector('#timeline-box').innerHTML += '<div class="notes"><div class="notes-user">@'+result[i].user.username+'@'+result[i].user.host+'</div><div class="notes-text">'+result[i].text+'</div></div>'
+            var notetext = ''
+            var notehost = accounts[0].host
+            if (result[i].text) {
+                notetext = result[i].text
+            }
+            if (result[i].user.host) {
+                notehost = result[i].user.host
+            }
+            document.querySelector('#timeline-box').innerHTML += '<div class="notes"><div class="notes-user">@'+result[i].user.username+'@'+notehost+'</div><div class="notes-text">'+notetext+'</div></div>'
         }
     }
 
