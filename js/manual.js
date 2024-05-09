@@ -26,7 +26,7 @@ async function post(accountIndex, text) {
     var data = await fetch(url, param)
     var result = await data.json()
 
-    csv += text.replace(/\,/gm, '&comma;') + ',' + accountIndex + '\n'
+    csv += text.replace(/\,/gm, '&comma;').replace(/\n/gm, ' ') + ',' + accountIndex + '\n'
     localStorage.setItem('csv', csv)
 
     getTimeLine()
