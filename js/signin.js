@@ -7,21 +7,17 @@ function signin(host) {
     location.href = signinUrl;
 }
 
+function changeDisabled(e) {
+    if (e.value != '') {
+        document.querySelector('#host-button').disabled = false
+    } else {
+        document.querySelector('#host-button').disabled = true
+    }
+}
+
 if (page == 'signin') {
 
-    document.querySelector('#post-box').innerHTML = '<div id="host-label">계정이 있는 인스턴스 주소:</div><input id="host-input"><button id="host-button" disabled="true">로그인!</button>'
-
-    document.querySelector('#host-input').addEventListener('input', (e) => {
-        if (document.querySelector('#host-input').value != '') {
-            document.querySelector('#host-button').disabled = false
-        } else {
-            document.querySelector('#host-button').disabled = true
-        }
-    })
-
-    document.querySelector('#host-button').addEventListener('click', (e) => {
-        signin(document.querySelector('#host-input').value)
-    })
+    document.querySelector('#post-box').innerHTML = '<div id="host-label">계정이 있는 인스턴스 주소:</div><input id="host-input" oninput="changeDisabled(this)"><button id="host-button" disabled="true" onclick="signin(document.querySelector("#host-input").value)">로그인!</button>'
 
 } else if (page == 'callback') {
 
@@ -51,7 +47,7 @@ if (page == 'signin') {
             fetch(postUrl, postParam)
             .then((tokenData) => {return tokenData.json()})
             .then((tokenRes) => {
-                
+
                 var token = tokenRes.token
                 var userId = tokenRes.user.id
                 var username = tokenRes.user.username
