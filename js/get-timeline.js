@@ -1,6 +1,9 @@
 
 async function getTimeLine() {
 
+    document.querySelector('#note-box').innerHTML = ''
+    document.querySelector('#timeline-box').innerHTML = ''
+    
     var parsedCSV = csv.split('\n')
     for (var i=parsedCSV.length - 2; i>-1; i--) {
         var parsedText = parsedCSV[i].split(',')[0]
