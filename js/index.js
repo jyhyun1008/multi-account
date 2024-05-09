@@ -33,6 +33,6 @@ if (localStorage.getItem('accounts')) {
     if (accounts.length == 0) {
         location.href = './index.html?page=signin'
     }
-} else if (page !== 'signin' || page !=='callback') {
+} else if (page !== 'signin' && page !=='callback') {
     location.href = './index.html?page=signin'
 }
