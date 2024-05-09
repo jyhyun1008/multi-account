@@ -51,13 +51,11 @@ if (page == 'signin') {
             fetch(postUrl, postParam)
             .then((tokenData) => {return tokenData.json()})
             .then((tokenRes) => {
-
-                console.log(tokenRes)
-
+                
                 var token = tokenRes.token
-                var userId = tokenRes.id
-                var username = tokenRes.username
-                var avatar = tokenRes.avatar
+                var userId = tokenRes.user.id
+                var username = tokenRes.user.username
+                var avatar = tokenRes.user.avatarUrl
 
                 accounts.push({
                     "host": sessionHost,
@@ -73,7 +71,7 @@ if (page == 'signin') {
                 localStorage.removeItem("lastSessionId")
                 localStorage.removeItem("lastHost")
 
-                //location.href = './index.html'
+                location.href = './index.html'
             })
         } else {
             alert('잘못된 접근입니다.')
