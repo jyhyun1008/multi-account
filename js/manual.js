@@ -33,15 +33,15 @@ async function post(accountIndex, text) {
 
 if (accounts.length > 0 && mode == 'manual') {
 
-    document.querySelector('#post-box').innerHTML += '<div id="select-box"><select id="select-input" name="account" id="account"></select></div>'
-
-    for (var i=0; i<accounts.length; i++) {
-        document.querySelector('#select-input').innerHTML += '<option value="'+i+'">@'+accounts[i].username+'@'+accounts[i].host+'</option>'
-    }
-
     if (page !== 'signin' && page !=='callback') {
 
-        document.querySelector('#post-box').innerHTML = '<div id="post-label">게시하기:</div><input id="post-input" oninput="changeDisabled(this)"><button id="post-button" disabled="true" onclick="post(document.querySelector(`#select-input`).value, document.querySelector(`#post-input`).value)">게시!</button>'
+        document.querySelector('#post-box').innerHTML = '<div id="post-label">게시하기:</div><textarea id="post-input" oninput="changePostDisabled(this)"></textarea><button id="post-button" disabled="true" onclick="post(document.querySelector(`#select-input`).value, document.querySelector(`#post-input`).value)">게시!</button>'
+
+        document.querySelector('#post-box').innerHTML += '<div id="select-box"><select id="select-input" name="account" id="account"></select></div>'
+
+        for (var i=0; i<accounts.length; i++) {
+            document.querySelector('#select-input').innerHTML += '<option value="'+i+'">@'+accounts[i].username+'@'+accounts[i].host+'</option>'
+        }
 
     }
 
