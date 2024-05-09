@@ -1,0 +1,52 @@
+@font-face {
+    font-family: 'ONE-Mobile-POP';
+    src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2105_2@1.0/ONE-Mobile-POP.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+body, button, input {
+    font-family: 'ONE-Mobile-POP';
+}
+
+#title-box, #post-box {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    width: 100%;
+    max-width: 600px;;
+    margin: 10px auto;
+}
+
+input {
+    width: auto;
+    padding: 5px;
+    border-radius: 10px;
+    border: 1px solid black;
+}
+
+button {
+    width: 100%;
+    padding: 5px;
+    border-radius: 10px;
+    border: 1px solid black;
+}
+
+#others-box {
+    display: flex;
+    width: 100%;
+    gap: 12px;
+}
+
+#others-box > div {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+#others-box > div > div {
+    border: 1px solid black;
+    padding: 10px;
+    border-radius: 10px;
+}
