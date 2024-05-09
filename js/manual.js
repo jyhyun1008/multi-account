@@ -20,9 +20,9 @@ function changePostDisabled(e) {
 
 async function translategpt(text) {
 
-    var msgs = [{"role": "system", "content": "Make the following sentence into a pretty and polite Korean sentence."}]
+    var msgs = [{"role": "system", "content": "Make the following (after the colon) sentence into a pretty and polite Korean sentence. Please print out only the content WITHOUT quotation marks:"}]
 
-    msgs.push({"role": 'user', "content": " Please print out only the content WITHOUT quotation marks:" + text})
+    msgs.push({"role": 'user', "content": text})
 
     var sendChatUrl = 'https://api.openai.com/v1/chat/completions'
     var sendChatParam = {
