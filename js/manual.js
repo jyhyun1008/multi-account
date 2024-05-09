@@ -20,10 +20,9 @@ function changePostDisabled(e) {
 
 async function translategpt(text) {
 
-    var msgs = [{"role": "system", "content": "Make the following sentence into a pretty and polite Korean sentence. Please print out only the content without quotation marks:"}]
+    var msgs = [{"role": "system", "content": "Make the following sentence into a pretty and polite Korean sentence."}]
 
-    document.querySelector(`#post-input`).value = ''
-    msgs.push({"role": 'user', "content": text})
+    msgs.push({"role": 'user', "content": " Please print out only the content WITHOUT quotation marks:" + text})
 
     var sendChatUrl = 'https://api.openai.com/v1/chat/completions'
     var sendChatParam = {
@@ -35,7 +34,7 @@ async function translategpt(text) {
         method: "POST",
         headers: {
             "content-type": "application/json",
-            Authorization: "Bearer " + authCode,
+            Authorization: "Bearer " + localStorage.getItem('gptToken'),
         }
     }
     var data = await fetch(sendChatUrl, sendChatParam)
