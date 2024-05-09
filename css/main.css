@@ -18,7 +18,7 @@ body, button, input, textarea, select {
     margin: 10px auto;
 }
 
-input, textarea, select {
+input, textarea {
     width: auto;
     padding: 5px;
     border-radius: 10px;
@@ -26,7 +26,7 @@ input, textarea, select {
     font-size: 1.05em;
 }
 
-button {
+button, select {
     width: 100%;
     padding: 5px;
     border-radius: 10px;
