@@ -32,6 +32,7 @@ async function post(accountIndex, text) {
     getTimeLine()
 
     document.querySelector(`#post-input`).value = ''
+    document.querySelector('#post-button').disabled = true
 
 }
 
