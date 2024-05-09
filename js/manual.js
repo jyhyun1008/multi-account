@@ -1,16 +1,20 @@
 function changeGPTDisabled(e) {
-    if (e.value != '' && localStorage.getItem('gptToken')) {
+    if (e.value != '' && localStorage.getItem('gptToken') != '') {
         document.querySelector('#gpt-button').disabled = false
     } else {
-        document.querySelector('#gpt-button').disabled = true
     }
 }
 
 function changePostDisabled(e) {
-    if (e.value != '') {
+    if (e.value != '' && localStorage.getItem('gptToken') != '') {
         document.querySelector('#post-button').disabled = false
+        document.querySelector('#gpt-button').disabled = false
+    } else if (e.value != '' ) {
+        document.querySelector('#post-button').disabled = false
+        document.querySelector('#gpt-button').disabled = true
     } else {
         document.querySelector('#post-button').disabled = true
+        document.querySelector('#gpt-button').disabled = true
     }
 }
 
