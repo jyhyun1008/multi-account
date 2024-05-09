@@ -12,13 +12,14 @@ async function getTimeLine() {
         document.querySelector('#note-box').innerHTML += '<div class="notes"><div class="notes-user" style="background-color:'+COLORCHIP[parsedIndex % COLORCHIP.length]+';">@'+accounts[parsedIndex].role+'</div><div class="notes-text">'+parsedText+'</div></div>'
     }
 
-    var url = 'https://'+accounts[0].host+'/api/notes/global-timeline'
+    var url = 'https://'+accounts[0].host+'/api/notes/timeline'
     var param = {
         method: 'POST',
         headers: {
             'content-type': 'application/json',
         },
         body: JSON.stringify({
+            i: accounts[0].token,
             limit: 100
         })
     }
