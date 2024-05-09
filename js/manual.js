@@ -35,6 +35,8 @@ async function post(accountIndex, text) {
 
 if (accounts.length > 0 && mode == 'manual') {
 
+    document.querySelector('#mode').innerHTML = '현재 모드는 수동 분류 모드 입니다.'
+
     if (page !== 'signin' && page !=='callback') {
 
         document.querySelector('#post-box').innerHTML = '<div id="post-label">게시하기:</div><textarea id="post-input" oninput="changePostDisabled(this)"></textarea><button id="post-button" disabled="true" onclick="post(parseInt(document.querySelector(`#select-input`).value), document.querySelector(`#post-input`).value)">게시!</button>'
