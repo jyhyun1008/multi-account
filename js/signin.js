@@ -18,7 +18,7 @@ async function signin(host) {
             },
             body: JSON.stringify({
                 client_name: "apap",
-                redirect_uris: `${encodeURIComponent(location.href.split('?')[0])}?page=callback`,
+                redirect_uris: `${location.href.split('?')[0]}?page=callback`,
                 scopes: 'read write'
             })
         }
@@ -144,7 +144,7 @@ if (page == 'signin') {
                 code: code,
                 client_id: localStorage.getItem('client_id'),
                 client_secret: localStorage.getItem('client_secret'),
-                redirect_uri: `${encodeURIComponent(location.href.split('?')[0])}?page=callback`,
+                redirect_uri: `${location.href.split('?')[0]}?page=callback`,
                 scope: 'read write'
             })
         }
