@@ -25,10 +25,12 @@ async function signin(host) {
         try {
             var mastodonCreateApp = await fetch(mastodonCreateAppUrl, mastodonCreateAppParam)
             var mastodonCreateAppRes = await mastodonCreateApp.json()
-            localStorage.setItem('client_id', mastodonCreateAppRes.client_id)
-            localStorage.setItem('client_secret', mastodonCreateAppRes.client_secret)
+            var client_id = mastodonCreateAppRes.client_id
+            var client_secret = mastodonCreateAppRes.client_secret
+            localStorage.setItem('client_id', client_id)
+            localStorage.setItem('client_secret', client_secret)
 
-            const mastodonSigninUrl = `https://${host}/oauth/authorize?response_type=code&client_id=${mastodonCreateAppRes.client_id}&redirect_uri=${encodeURIComponent(location.href.split('?')[0])}&scope=read%20write&lang=ko-KR`
+            const mastodonSigninUrl = `https://${host}/oauth/authorize?response_type=code&client_id=${client_id}&redirect_uri=${encodeURIComponent(location.href.split('?')[0])}&scope=read%20write&lang=ko-KR`
             console.log(mastodonSigninUrl)
             // location.href = mastodonSigninUrl;
 
