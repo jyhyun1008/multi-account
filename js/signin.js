@@ -164,27 +164,26 @@ if (page == 'signin') {
             fetch(mastodonMeUrl, mastodonMeParam)
             .then((me)=>{return me.json()})
             .then((meRes)=> {
-                console.log(meRes)
 
-            //     var userId = meRes.id
-            //     var username = meRes.username
-            //     var avatar = meRes.avatar
+                var userId = meRes.id
+                var username = meRes.username
+                var avatar = meRes.avatar
         
-            //     accounts.push({
-            //         "type": 'mastodon',
-            //         "host": sessionHost,
-            //         "sessionId": sessionId,
-            //         "userId": userId,
-            //         "username": username,
-            //         "avatar": avatar,
-            //         "role": value,
-            //         "vis": vis,
-            //         "token": mastoToken
-            //     })
+                accounts.push({
+                    "type": 'mastodon',
+                    "host": sessionHost,
+                    "sessionId": sessionId,
+                    "userId": userId,
+                    "username": username,
+                    "avatar": avatar,
+                    "role": value,
+                    "vis": vis,
+                    "token": mastoToken
+                })
 
-            //     localStorage.setItem("accounts", JSON.stringify(accounts))
-            //     localStorage.removeItem("lastSessionId")
-            //     localStorage.removeItem("lastHost")
+                localStorage.setItem("accounts", JSON.stringify(accounts))
+                // localStorage.removeItem("lastSessionId")
+                // localStorage.removeItem("lastHost")
 
             //     location.href = './index.html'
             })
