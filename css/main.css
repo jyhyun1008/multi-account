@@ -30,7 +30,8 @@ a {
 }
 
 input, textarea {
-    width: auto;
+    max-width: -webkit-fill-available;
+    width: 100%;
     padding: 5px;
     border-radius: 10px;
     border: 1px solid black;
