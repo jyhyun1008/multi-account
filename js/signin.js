@@ -181,6 +181,12 @@ if (page == 'signin') {
                     "vis": vis,
                     "token": mastoToken
                 })
+
+                localStorage.setItem("accounts", JSON.stringify(accounts))
+                localStorage.removeItem("lastSessionId")
+                localStorage.removeItem("lastHost")
+
+                location.href = './index.html'
             } catch (err) {
                 console.log(err)
             }
