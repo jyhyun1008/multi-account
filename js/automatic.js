@@ -76,7 +76,7 @@ async function classify(text) {
     if (result.choices) {
         var response = result.choices[0].message.content
         var responseString = '{' + response.split('{')[1].split('}')[0] + '}'
-        var responseJson = JSON.stringify(responseString)
+        var responseJson = JSON.parse(responseString)
         document.querySelector('#gpt-button').disabled = false
         document.querySelector(`#select-input`).value = `${responseJson.role}`
         document.querySelector('#post-textarea').value = '<textarea id="post-input" oninput="changePostDisabled_a(this)"></textarea>'
