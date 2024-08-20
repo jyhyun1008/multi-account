@@ -1,8 +1,13 @@
 
 
 function changePostDisabled_a(e) {
-    document.querySelector('#post-textarea').value = '<textarea id="post-input" oninput="changeGPTDisabled_a(this)"></textarea>'
-    document.querySelector('#post-classify').value = '<button id="post-button" disabled="true" onclick="classify(parseInt(document.querySelector(`#select-input`).value), document.querySelector(`#post-input`).value)">분류!</button>'
+    if (e.value != '' ) {
+        document.querySelector('#post-button').disabled = false
+        document.querySelector('#gpt-button').disabled = true
+    } else {
+        document.querySelector('#post-button').disabled = true
+        document.querySelector('#gpt-button').disabled = true
+    }
 }
 
 function changeGPTDisabled_a(e) {
@@ -79,7 +84,7 @@ async function classify(text) {
         var responseJson = JSON.parse(responseString)
         document.querySelector('#gpt-button').disabled = false
         document.querySelector(`#select-input`).value = responseJson.role
-        document.querySelector('#post-textarea').innerHTML = '<textarea id="post-input" oninput="changePostDisabled_a(this)"></textarea>'
+        document.querySelector('#post-textarea').innerHTML = `<textarea id="post-input" oninput="changePostDisabled_a(this)">${text}</textarea>`
         document.querySelector('#post-classify').innerHTML = '<button id="post-button" disabled="false" onclick="post(parseInt(document.querySelector(`#select-input`).value), document.querySelector(`#post-input`).value)">게시!</button>'
     }
 }
