@@ -144,7 +144,7 @@ async function post(accountIndex, text) {
 
 }
 
-if (accounts.length > 0 && mode == 'automatic' && localStorage.getItem('gptToken')) {
+if (accounts.length > 0 && mode == 'automatic' && localStorage.getItem('gptToken') != '') {
 
     document.querySelector('#mode').innerHTML = '현재 모드는 자동 분류 모드 입니다.'
 
