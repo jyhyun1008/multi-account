@@ -86,6 +86,7 @@ async function classify(text) {
         document.querySelector(`#select-input`).value = responseJson.role
         document.querySelector('#post-textarea').innerHTML = `<textarea id="post-input" oninput="changePostDisabled_a(this)">${text}</textarea>`
         document.querySelector('#post-classify').innerHTML = '<button id="post-button" disabled="false" onclick="post(parseInt(document.querySelector(`#select-input`).value), document.querySelector(`#post-input`).value)">게시!</button>'
+        document.querySelector('#post-button').disabled = false
     }
 }
 
