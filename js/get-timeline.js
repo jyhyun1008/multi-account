@@ -13,31 +13,37 @@ async function getTimeLine() {
         document.querySelector('#note-box').innerHTML += '<div class="notes"><div class="notes-user" style="background-color:'+COLORCHIP[parsedIndex % COLORCHIP.length]+';">@'+accounts[parsedIndex].role+'</div><div class="notes-text">'+parsedText+'</div></div>'
     }
 
-    var url = 'https://'+accounts[0].host+'/api/notes/timeline'
-    var param = {
-        method: 'POST',
-        headers: {
-            'content-type': 'application/json',
-        },
-        body: JSON.stringify({
-            i: accounts[0].token,
-            limit: 100
-        })
-    }
-    var data = await fetch(url, param)
-    var result = await data.json()
+    if (accounts[0].type == 'misskey') {
 
-    for (var i=0; i<result.length;i++) {
-        var notetext = ''
-        var notehost = accounts[0].host
-        if (result[i].text) {
-            notetext = result[i].text
+        var url = 'https://'+accounts[0].host+'/api/notes/timeline'
+        var param = {
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json',
+            },
+            body: JSON.stringify({
+                i: accounts[0].token,
+                limit: 100
+            })
         }
-        if (result[i].user.host) {
-            notehost = result[i].user.host
+        var data = await fetch(url, param)
+        var result = await data.json()
+    
+        for (var i=0; i<result.length;i++) {
+            var notetext = ''
+            var notehost = accounts[0].host
+            if (result[i].text) {
+                notetext = result[i].text
+            }
+            if (result[i].user.host) {
+                notehost = result[i].user.host
+            }
+            document.querySelector('#timeline-box').innerHTML += '<div class="notes"><div class="notes-user">@'+result[i].user.username+'@'+notehost+'</div><div class="notes-text">'+notetext+'</div></div>'
         }
-        document.querySelector('#timeline-box').innerHTML += '<div class="notes"><div class="notes-user">@'+result[i].user.username+'@'+notehost+'</div><div class="notes-text">'+notetext+'</div></div>'
+    } else {
+        //마스토돈 구현중
     }
+
 }
 
 if (accounts.length > 0) {

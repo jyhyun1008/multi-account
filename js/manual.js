@@ -53,25 +53,53 @@ async function translategpt(text) {
 async function post(accountIndex, text) {
 
     var vis = accounts[accountIndex].vis
+    
+    if (accounts[accountIndex].type == 'misskey') {
 
-    var url = 'https://'+accounts[accountIndex].host+'/api/notes/create'
-    var param = {
-        method: 'POST',
-        headers: {
-            'content-type': 'application/json',
-        },
-        body: JSON.stringify({
-            i: accounts[accountIndex].token,
-            text: text,
-            visibility: vis,
-        })
+        var url = 'https://'+accounts[accountIndex].host+'/api/notes/create'
+        var param = {
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json',
+            },
+            body: JSON.stringify({
+                i: accounts[accountIndex].token,
+                text: text,
+                visibility: vis,
+            })
+        }
+    
+        var data = await fetch(url, param)
+        var result = await data.json()
+    
+        csv += text.replace(/\,/gm, '&comma;').replace(/\n/gm, ' ') + ',' + accountIndex + '\n'
+        localStorage.setItem('csv', csv)
+
+    } else { //마스토돈
+        if (vis == 'home') {
+            vis = 'unlisted'
+        } else if (vis == 'followers') {
+            vis = 'private'
+        }
+        var url = `https://${accounts[accountIndex].host}/api/v1/statuses`
+        var param = {
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json',
+                'Authorization': `Bearer `+accounts[accountIndex].token,
+            },
+            body: JSON.stringify({
+                status: text,
+                visibility: vis,
+            })
+        }
+
+        var data = await fetch(url, param)
+        var result = await data.json()
+    
+        csv += text.replace(/\,/gm, '&comma;').replace(/\n/gm, ' ') + ',' + accountIndex + '\n'
+        localStorage.setItem('csv', csv)
     }
-
-    var data = await fetch(url, param)
-    var result = await data.json()
-
-    csv += text.replace(/\,/gm, '&comma;').replace(/\n/gm, ' ') + ',' + accountIndex + '\n'
-    localStorage.setItem('csv', csv)
 
     getTimeLine()
 
