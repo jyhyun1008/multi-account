@@ -47,7 +47,7 @@ async function getTimeLine() {
             method: 'POST',
             headers: {
                 'content-type': 'application/json',
-                'Authorization': `Bearer `+accounts[accountIndex].token,
+                'Authorization': `Bearer `+accounts[0].token,
             },
             body: JSON.stringify({
                 limit: 40,
