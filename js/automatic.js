@@ -42,11 +42,46 @@ async function translategpt(text) {
     var data = await fetch(sendChatUrl, sendChatParam)
     var result = await data.json()
     document.querySelector('#gpt-button').disabled = true
-    document.querySelector('#post-button').disabled = false
+    document.querySelector('#classify-button').disabled = false
 
     if (result.choices) {
         var response = result.choices[0].message.content
         document.querySelector(`#post-input`).value = response
+    }
+}
+
+async function classify(text) {
+    var csv = localStorage.getItem('csv')
+
+    var msgs = [{"role": "system", "content": csv}, {"role": "system", "content": `Classify the follwing SNS post message based on previous csv in json format {"role": '0/1/2'}. Give me json in text only:`}]
+
+    msgs.push({"role": "user", "content": text})
+
+    var sendChatUrl = 'https://api.openai.com/v1/chat/completions'
+    var sendChatParam = {
+        body: JSON.stringify({
+            "model": "gpt-4o-mini", 
+            "messages": msgs, 
+            "temperature": 0.7,
+            "max_tokens": 512}),
+        method: "POST",
+        headers: {
+            "content-type": "application/json",
+            Authorization: "Bearer " + localStorage.getItem('gptToken'),
+        }
+    }
+    document.querySelector('#gpt-button').disabled = true
+    var data = await fetch(sendChatUrl, sendChatParam)
+    var result = await data.json()
+    document.querySelector('#post-button').disabled = true
+
+    if (result.choices) {
+        var response = result.choices[0].message.content
+        var responseString = '{' + response.split('{')[1].split('}')[0] + '}'
+        var responseJson = JSON.stringify(responseString)
+        document.querySelector('#gpt-button').disabled = false
+        document.querySelector(`#select-input`).value = responseJson.role
+        document.querySelector('#post-classify').value = '<button id="post-button" disabled="true" onclick="post(parseInt(document.querySelector(`#select-input`).value), document.querySelector(`#post-input`).value)">게시!</button>'
     }
 }
 
@@ -72,7 +107,7 @@ async function post(accountIndex, text) {
         var data = await fetch(url, param)
         var result = await data.json()
     
-        csv += text.replace(/\,/gm, '&comma;').replace(/\n/gm, ' ') + ',' + accountIndex + ',' + accounts[accountIndex].role + '\n'
+        csv += text.replace(/\,/gm, '&comma;').replace(/\n/gm, ' ') + ',' + accountIndex + '\n'
         localStorage.setItem('csv', csv)
 
     } else { //마스토돈
@@ -97,7 +132,7 @@ async function post(accountIndex, text) {
         var data = await fetch(url, param)
         var result = await data.json()
     
-        csv += text.replace(/\,/gm, '&comma;').replace(/\n/gm, ' ') + ',' + accountIndex + ',' + accounts[accountIndex].role + '\n'
+        csv += text.replace(/\,/gm, '&comma;').replace(/\n/gm, ' ') + ',' + accountIndex + '\n'
         localStorage.setItem('csv', csv)
     }
 
@@ -109,13 +144,13 @@ async function post(accountIndex, text) {
 
 }
 
-if (accounts.length > 0 && mode == 'manual') {
+if (accounts.length > 0 && mode == 'automatic' && localStorage.getItem('gptToken')) {
 
-    document.querySelector('#mode').innerHTML = '현재 모드는 수동 분류 모드 입니다.'
+    document.querySelector('#mode').innerHTML = '현재 모드는 자동 분류 모드 입니다.'
 
     if (page !== 'signin' && page !=='callback' && page !== 'gpt' && !code) {
 
-        document.querySelector('#post-box').innerHTML = '<div id="post-label">게시하기:</div><textarea id="post-input" oninput="changePostDisabled(this)"></textarea><button id="gpt-button" disabled="true" onclick="translategpt(document.querySelector(`#post-input`).value)">GPT-변환</button><button id="post-button" disabled="true" onclick="post(parseInt(document.querySelector(`#select-input`).value), document.querySelector(`#post-input`).value)">게시!</button>'
+        document.querySelector('#post-box').innerHTML = '<div id="post-label">게시하기:</div><textarea id="post-input" oninput="changePostDisabled(this)"></textarea><button id="gpt-button" disabled="true" onclick="translategpt(document.querySelector(`#post-input`).value)">GPT-변환</button><div id="post-classify"><button id="classify-button" disabled="true" onclick="classify(parseInt(document.querySelector(`#select-input`).value), document.querySelector(`#post-input`).value)">분류!</button></div>'
 
         document.querySelector('#post-box').innerHTML += '<div id="select-box"><select id="select-input" name="account" id="account"></select></div>'
 
