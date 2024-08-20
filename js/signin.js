@@ -18,7 +18,7 @@ async function signin(host) {
             },
             body: JSON.stringify({
                 client_name: "apap",
-                redirect_uris: `${location.href.split('?')[0]}?page=callback`,
+                redirect_uris: `${location.href.split('?')[0]}`,
                 scopes: 'read write'
             })
         }
@@ -30,9 +30,9 @@ async function signin(host) {
             localStorage.setItem('client_id', client_id)
             localStorage.setItem('client_secret', client_secret)
 
-            const mastodonSigninUrl = `https://${host}/oauth/authorize?response_type=code&client_id=${client_id}&redirect_uri=${encodeURIComponent(location.href.split('?')[0])}&scope=read%20write&lang=ko-KR`
-            console.log(mastodonSigninUrl)
-            // location.href = mastodonSigninUrl;
+            const mastodonSigninUrl = `https://${host}/oauth/authorize?response_type=code&client_id=${client_id}&redirect_uri=${location.href.split('?')[0]}&scope=read%20write&lang=ko-KR`
+            //console.log(mastodonSigninUrl)
+            location.href = mastodonSigninUrl;
 
         } catch(err) {
             console.log(err)
@@ -144,7 +144,7 @@ if (page == 'signin') {
                 code: code,
                 client_id: localStorage.getItem('client_id'),
                 client_secret: localStorage.getItem('client_secret'),
-                redirect_uri: `${location.href.split('?')[0]}?page=callback`,
+                redirect_uri: `${location.href.split('?')[0]}`,
                 scope: 'read write'
             })
         }
