@@ -20,6 +20,7 @@ function getQueryStringObject() {
 var qs = getQueryStringObject()
 var page = qs.page
 var mode = qs.mode
+var code = qs.code
 
 if (!mode) {
     mode = 'manual'
