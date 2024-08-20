@@ -8,19 +8,22 @@ function changeGPTDisabled(e) {
 function changePostDisabled(e) {
     if (e.value != '' && localStorage.getItem('gptToken') != '') {
         document.querySelector('#post-button').disabled = false
+        document.querySelector('#classify-button').disabled = false
         document.querySelector('#gpt-button').disabled = false
     } else if (e.value != '' ) {
         document.querySelector('#post-button').disabled = false
+        document.querySelector('#classify-button').disabled = false
         document.querySelector('#gpt-button').disabled = true
     } else {
         document.querySelector('#post-button').disabled = true
+        document.querySelector('#classify-button').disabled = true
         document.querySelector('#gpt-button').disabled = true
     }
 }
 
 async function translategpt(text) {
     document.querySelector('#gpt-button').disabled = true
-    document.querySelector('#post-button').disabled = true
+    document.querySelector('#classify-button').disabled = true
 
     var msgs = [{"role": "system", "content": "Make the following (after the colon) sentence into a pretty and polite Korean sentence. Please print out only the content WITHOUT quotation marks:"}]
 
