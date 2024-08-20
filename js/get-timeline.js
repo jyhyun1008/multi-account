@@ -42,6 +42,31 @@ async function getTimeLine() {
         }
     } else {
         //마스토돈 구현중
+        var url = 'https://${accounts[0].host}/api/v1/timelines/home'
+        var param = {
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json',
+                'Authorization': `Bearer `+accounts[accountIndex].token,
+            },
+            body: JSON.stringify({
+                limit: 40,
+            })
+        }
+        var data = await fetch(url, param)
+        var result = await data.json()
+
+        for (var i=0; i<result.length;i++) {
+            var notetext = ''
+            var notehost = accounts[0].host
+            if (result[i].content) {
+                notetext = result[i].content
+            }
+            if (result[i].account.url) {
+                notehost = result[i].account.url.split('://')[1].split('/')[0]
+            }
+            document.querySelector('#timeline-box').innerHTML += '<div class="notes"><div class="notes-user">@'+result[i].account.username+'@'+notehost+'</div><div class="notes-text">'+notetext+'</div></div>'
+        }
     }
 
 }
