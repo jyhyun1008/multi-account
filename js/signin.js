@@ -182,10 +182,10 @@ if (page == 'signin') {
                 })
 
                 localStorage.setItem("accounts", JSON.stringify(accounts))
-                // localStorage.removeItem("lastSessionId")
-                // localStorage.removeItem("lastHost")
+                localStorage.removeItem("lastSessionId")
+                localStorage.removeItem("lastHost")
 
-            //     location.href = './index.html'
+                location.href = './index.html'
             })
         })
     }
