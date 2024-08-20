@@ -6,20 +6,20 @@ function changeGPTDisabled(e) {
 }
 
 function changePostDisabled(e) {
-    if (e.value != '' && localStorage.getItem('gptToken') != '') {
-        document.querySelector('#post-button').disabled = false
-        document.querySelector('#classify-button').disabled = false
-        document.querySelector('#gpt-button').disabled = false
-    } else if (e.value != '' ) {
-        document.querySelector('#post-button').disabled = false
+    document.querySelector('#post-textarea').value = '<textarea id="post-input" oninput="changeClassifyDisabled(this)"></textarea>'
+    document.querySelector('#post-classify').value = '<button id="post-button" disabled="true" onclick="classify(parseInt(document.querySelector(`#select-input`).value), document.querySelector(`#post-input`).value)">분류!</button>'
+}
+
+function changeClassifyDisabled(e) {
+    if (e.value != '' ) {
         document.querySelector('#classify-button').disabled = false
         document.querySelector('#gpt-button').disabled = true
     } else {
-        document.querySelector('#post-button').disabled = true
         document.querySelector('#classify-button').disabled = true
         document.querySelector('#gpt-button').disabled = true
     }
 }
+
 
 async function translategpt(text) {
     document.querySelector('#gpt-button').disabled = true
@@ -84,6 +84,7 @@ async function classify(text) {
         var responseJson = JSON.stringify(responseString)
         document.querySelector('#gpt-button').disabled = false
         document.querySelector(`#select-input`).value = responseJson.role
+        document.querySelector('#post-textarea').value = '<textarea id="post-input" oninput="changePostDisabled(this)"></textarea>'
         document.querySelector('#post-classify').value = '<button id="post-button" disabled="true" onclick="post(parseInt(document.querySelector(`#select-input`).value), document.querySelector(`#post-input`).value)">게시!</button>'
     }
 }
@@ -153,7 +154,7 @@ if (accounts.length > 0 && mode == 'automatic' && localStorage.getItem('gptToken
 
     if (page !== 'signin' && page !=='callback' && page !== 'gpt' && !code) {
 
-        document.querySelector('#post-box').innerHTML = '<div id="post-label">게시하기:</div><textarea id="post-input" oninput="changePostDisabled(this)"></textarea><button id="gpt-button" disabled="true" onclick="translategpt(document.querySelector(`#post-input`).value)">GPT-변환</button><div id="post-classify"><button id="classify-button" disabled="true" onclick="classify(parseInt(document.querySelector(`#select-input`).value), document.querySelector(`#post-input`).value)">분류!</button></div>'
+        document.querySelector('#post-box').innerHTML = '<div id="post-label">게시하기:</div><div id="post-textarea"><textarea id="post-input" oninput="changeClassifyDisabled(this)"></textarea></div><button id="gpt-button" disabled="true" onclick="translategpt(document.querySelector(`#post-input`).value)">GPT-변환</button><div id="post-classify"><button id="classify-button" disabled="true" onclick="classify(parseInt(document.querySelector(`#select-input`).value), document.querySelector(`#post-input`).value)">분류!</button></div>'
 
         document.querySelector('#post-box').innerHTML += '<div id="select-box"><select id="select-input" name="account" id="account"></select></div>'
 
