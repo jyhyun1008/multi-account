@@ -42,7 +42,7 @@ async function getTimeLine() {
         }
     } else {
         //마스토돈 구현중
-        var url = 'https://${accounts[0].host}/api/v1/timelines/home'
+        var url = `https://${accounts[0].host}/api/v1/timelines/home`
         var param = {
             method: 'POST',
             headers: {
