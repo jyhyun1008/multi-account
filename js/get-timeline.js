@@ -42,16 +42,13 @@ async function getTimeLine() {
         }
     } else {
         //마스토돈 구현중
-        var url = `https://${accounts[0].host}/api/v1/timelines/home`
+        var url = `https://${accounts[0].host}/api/v1/timelines/home?limit=40`
         var param = {
-            method: 'POST',
+            method: 'GET',
             headers: {
                 'content-type': 'application/json',
                 'Authorization': `Bearer `+accounts[0].token,
-            },
-            body: JSON.stringify({
-                limit: 40,
-            })
+            }
         }
         var data = await fetch(url, param)
         var result = await data.json()
