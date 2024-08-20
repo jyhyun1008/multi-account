@@ -45,7 +45,7 @@ async function translategpt(text) {
     var data = await fetch(sendChatUrl, sendChatParam)
     var result = await data.json()
     document.querySelector('#gpt-button').disabled = true
-    document.querySelector('#classify-button').disabled = false
+    document.querySelector('#post-button').disabled = false
 
     if (result.choices) {
         var response = result.choices[0].message.content
@@ -76,7 +76,7 @@ async function classify(text) {
     document.querySelector('#gpt-button').disabled = true
     var data = await fetch(sendChatUrl, sendChatParam)
     var result = await data.json()
-    document.querySelector('#post-button').disabled = true
+    document.querySelector('#classify-button').disabled = true
 
     if (result.choices) {
         var response = result.choices[0].message.content
