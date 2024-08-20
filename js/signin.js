@@ -132,7 +132,7 @@ if (page == 'signin') {
     var sessionId = localStorage.getItem('lastSessionId')
     var sessionHost = localStorage.getItem('lastHost')
 
-    async function register(value, vis) {
+    function register(value, vis) {
         const mastodonCreateTokenUrl = 'https://'+sessionHost+'/oauth/token'
         const mastodonCreateTokenParam = {
             method: 'POST',
@@ -148,10 +148,9 @@ if (page == 'signin') {
                 scope: 'read write'
             })
         }
-        try {
-            var mastodonCreateToken = await fetch(mastodonCreateTokenUrl, mastodonCreateTokenParam)
-            var mastodonCreateTokenResult = await mastodonCreateToken.json()
-    
+        fetch(mastodonCreateTokenUrl, mastodonCreateTokenParam)
+        .then((mastodonCreateToken)=>{return mastodonCreateToken.json()})
+        .then((mastodonCreateTokenResult)=> {
             var mastoToken = mastodonCreateTokenResult.access_token
     
             const mastodonMeUrl = `https://${sessionHost}/api/v1/accounts/verify_credentials`
@@ -162,10 +161,10 @@ if (page == 'signin') {
                     'Authorization': `Bearer `+mastoToken,
                 }
             }
-            try {
-                var me = await fetch(mastodonMeUrl, mastodonMeParam)
-                var meRes = await me.json()
-        
+            fetch(mastodonMeUrl, mastodonMeParam)
+            .then((me)=>{return me.json()})
+            .then((meRes)=> {
+
                 var userId = meRes.id
                 var username = meRes.username
                 var avatar = meRes.avatar
@@ -187,12 +186,8 @@ if (page == 'signin') {
                 localStorage.removeItem("lastHost")
 
                 location.href = './index.html'
-            } catch (err) {
-                console.log(err)
-            }
-        } catch(err) {
-            console.log(err)
-        }
+            })
+        })
     }
 
     document.querySelector('#post-box').innerHTML = '<div id="role-label">이 계정의 역할:</div><input id="role-input" oninput="changeRoleDisabled(this)"><div id="role-label">고정 공개범위:</div><select id="vis-input"><option value="public">공개</option><option value="home">홈</option><option value="followers">팔로워</option></select><button id="role-button" disabled="true" onclick="register(document.querySelector(`#role-input`).value, document.querySelector(`#vis-input`).value)">확인</button>'
