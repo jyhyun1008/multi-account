@@ -56,7 +56,7 @@ async function translategpt(text) {
 async function classify(text) {
     var csv = localStorage.getItem('csv')
 
-    var msgs = [{"role": "system", "content": csv}, {"role": "system", "content": `Classify the follwing SNS post message based on previous csv in json format {"role": '0/1/2'}. Give me json in text only:`}]
+    var msgs = [{"role": "system", "content": csv}, {"role": "system", "content": "Classify the follwing SNS post message based on previous csv in json format {'role': '0/1/2'}. Give me json in text only:"}]
 
     msgs.push({"role": "user", "content": text})
 
@@ -154,7 +154,7 @@ if (accounts.length > 0 && mode == 'automatic' && localStorage.getItem('gptToken
 
     if (page !== 'signin' && page !=='callback' && page !== 'gpt' && !code) {
 
-        document.querySelector('#post-box').innerHTML = '<div id="post-label">게시하기:</div><div id="post-textarea"><textarea id="post-input" oninput="changeClassifyDisabled(this)"></textarea></div><button id="gpt-button" disabled="true" onclick="translategpt(document.querySelector(`#post-input`).value)">GPT-변환</button><div id="post-classify"><button id="classify-button" disabled="true" onclick="classify(parseInt(document.querySelector(`#select-input`).value), document.querySelector(`#post-input`).value)">분류!</button></div>'
+        document.querySelector('#post-box').innerHTML = '<div id="post-label">게시하기:</div><div id="post-textarea"><textarea id="post-input" oninput="changeClassifyDisabled(this)"></textarea></div><button id="gpt-button" disabled="true" onclick="translategpt(document.querySelector(`#post-input`).value)">GPT-변환</button><div id="post-classify"><button id="classify-button" disabled="true" onclick="classify(document.querySelector(`#post-input`).value)">분류!</button></div>'
 
         document.querySelector('#post-box').innerHTML += '<div id="select-box"><select id="select-input" name="account" id="account"></select></div>'
 
