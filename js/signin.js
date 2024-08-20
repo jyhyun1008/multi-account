@@ -29,7 +29,7 @@ async function signin(host) {
             localStorage.setItem('client_secret', mastodonCreateAppRes.client_secret)
 
             const mastodonSigninUrl = `https://${host}/oauth/authorize?response_type=code&client_id=${mastodonCreateAppRes.client_id}&redirect_uri=${encodeURIComponent(location.href.split('?')[0])}&scope=read%20write&lang=ko-KR`
-            location.href = misskeySigninUrl;
+            location.href = mastodonSigninUrl;
 
         } catch(err) {
             console.log(err)
