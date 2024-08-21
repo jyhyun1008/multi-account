@@ -91,6 +91,7 @@ async function post(accountIndex, text) {
             body: JSON.stringify({
                 status: text,
                 visibility: vis,
+                content_type: 'text/markdown'
             })
         }
 
