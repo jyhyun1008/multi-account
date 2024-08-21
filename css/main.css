@@ -12,20 +12,82 @@
     font-style: normal;
 }
 
+:root {
+    --accent: #F64A8A;
+    --bg: #fafafa;
+    --accentlight: #fff6f6;
+    --accentlight2: #ffa8b7;
+}
+
 body, button, input, textarea, select {
     font-family: 'Freesentation';
+}
+
+h1, h2, h3 {
+    color: var(--accent);
+}
+
+#title {
+    font-size: 1.5em;
+    color: var(--accent);
+    margin-block-start: 0;
+    display: flex;
+    font-weight: 700;
+    align-items: center;
+}
+
+body {
+    background: var(--accentlight);
 }
 
 a {
     color: inherit;
 }
 
+.bx {
+    font-size: 1.6em;
+}
+
+#wrapper {
+    display: flex;
+    gap: 12px;
+}
+
+#wrapper>div {
+    border-radius: 15px;
+    background: white;
+    border: 1px dotted var(--accentlight2);
+}
+
+#content-box {
+    height: fit-content;
+}
+
+#content-box, #timeline-box, #note-box {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    width: 30vw;
+    max-width: 400px;
+}
+
 #title-box, #post-box {
     display: flex;
     flex-direction: column;
     gap: 12px;
-    width: 100%;
-    max-width: 600px;;
+    width: calc(100% - 12px);
+    max-width: 400px;
+    margin: 10px auto;
+}
+
+#timeline-title, #note-title {
+    width: 30vw;
+    max-width: 400px;
+    height: calc(100dvh - 16px);
+}
+
+#timeline-title>*, #note-title>* {
+    width: calc(100% - 12px);
     margin: 10px auto;
 }
 
@@ -34,7 +96,7 @@ input, textarea {
     width: 100%;
     padding: 5px;
     border-radius: 10px;
-    border: 1px solid black;
+    border: 1px solid var(--accent);
     font-size: 1.05em;
 }
 
@@ -42,8 +104,14 @@ button, select {
     width: 100%;
     padding: 5px;
     border-radius: 10px;
-    border: 1px solid black;
+    border: 1px solid var(--accent);
     font-size: 1.05em;
+    background-color: var(--accentlight);
+    color: var(--accent);
+}
+
+button:disabled {
+    background-color: white !important;
 }
 
 #others-box {
@@ -65,7 +133,23 @@ button, select {
 }
 
 .notes {
-    border: 1px solid black;
+    border: 1px solid var(--accent);
     padding: 10px;
     border-radius: 10px;
+}
+
+@media screen and (max-width: 800px){
+
+    #wrapper {
+        flex-direction: column;
+    }
+
+    #wrapper > div {
+        width: calc(100vw - 16px);
+        margin: 0 auto;
+    }
+
+    #note-title {
+        display: none;
+    }
 }
