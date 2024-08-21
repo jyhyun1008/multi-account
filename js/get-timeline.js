@@ -10,7 +10,6 @@ async function getTimeLine() {
 
     for await (account of accounts) {
         var parsedCSVFiltered = parsedCSV.filter((line) => line.includes(`,${account.role}`))
-        console.log(parsedCSVFiltered)
         if (parsedCSVFiltered.length > 9) {
             for (var j=0; j<parsedCSVFiltered.length - 9; j++) {
                 parsedCSVRemoved.push(parsedCSVFiltered[j])
@@ -21,7 +20,7 @@ async function getTimeLine() {
     if (parsedCSVRemoved.length > 0 ) {
         console.log(parsedCSVRemoved)
         for (var i=0; i<parsedCSVRemoved.length; i++) {
-            parsedCSV = parsedCSV.filter((line) => line.includes(parsedCSVRemoved[i]))
+            parsedCSV = parsedCSV.filter((line) => !line.includes(parsedCSVRemoved[i]))
         }
         csv = parsedCSV.join('\n')
     }
