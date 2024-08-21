@@ -1,3 +1,5 @@
+@import url('https://fastly.jsdelivr.net/npm/galmuri@latest/dist/galmuri.css');
+
 @font-face {
     font-family: 'Freesentation';
     src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/2404@1.0/Freesentation-1Thin.woff2') format('woff2');
@@ -20,7 +22,8 @@
 }
 
 body, button, input, textarea, select {
-    font-family: 'Freesentation';
+    font-family: Galmuri11;
+    font-size: 14px;
 }
 
 h1, h2, h3 {
