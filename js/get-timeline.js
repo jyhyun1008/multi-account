@@ -8,12 +8,12 @@ async function getTimeLine() {
     var parsedCSVRemoved = []
     var parsedCSVFiltered = []
 
-    for (var i=0; i<accounts.length; i++) {
-        parsedCSVFiltered.push(parsedCSV.filter((line) => line.includes(`,${i},`)))
-        console.log(parsedCSVRemoved)
-        if (parsedCSVFiltered[i].length > 9) {
+    for await (account of accounts) {
+        var parsedCSVFiltered = parsedCSV.filter((line) => line.includes(`,${account.role}`))
+        console.log(parsedCSVFiltered)
+        if (parsedCSVFiltered.length > 9) {
             for (var j=0; j<parsedCSVFiltered.length - 9; j++) {
-                parsedCSVRemoved.push(parsedCSVFiltered[i][j])
+                parsedCSVRemoved.push(parsedCSVFiltered[j])
             }
         }
     }
