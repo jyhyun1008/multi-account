@@ -108,6 +108,7 @@ async function post(accountIndex, text) {
     document.querySelector(`#post-input`).value = ''
     document.querySelector('#gpt-button').disabled = true
     document.querySelector('#post-button').disabled = true
+    document.querySelector('#wordcount').innerText = 0
 
 }
 
