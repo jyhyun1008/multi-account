@@ -5,6 +5,27 @@ async function getTimeLine() {
     document.querySelector('#timeline-box').innerHTML = ''
 
     var parsedCSV = csv.split('\n')
+    var parsedCSVRemoved = []
+    var parsedCSVFiltered = []
+
+    for (var i=0; i<accounts.length; i++) {
+        parsedCSVFiltered.push(parsedCSV.filter((line) => line.includes(`,${i},`)))
+        console.log(parsedCSVRemoved)
+        if (parsedCSVFiltered[i].length > 9) {
+            for (var j=0; j<parsedCSVFiltered.length - 9; j++) {
+                parsedCSVRemoved.push(parsedCSVFiltered[i][j])
+            }
+        }
+    }
+
+    if (parsedCSVRemoved.length > 0 ) {
+        console.log(parsedCSVRemoved)
+        for (var i=0; i<parsedCSVRemoved.length; i++) {
+            parsedCSV = parsedCSV.filter((line) => line.includes(parsedCSVRemoved[i]))
+        }
+        csv = parsedCSV.join('\n')
+    }
+
     if (parsedCSV.length > 1) {
         document.querySelector('#dataset-length').innerHTML = ' (' + (parsedCSV.length - 1) + ')'
     } else {
