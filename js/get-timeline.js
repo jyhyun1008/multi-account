@@ -6,7 +6,7 @@ async function getTimeLine() {
 
     var parsedCSV = csv.split('\n')
     if (parsedCSV.length > 1) {
-        document.querySelector('#dataset-length').innerHTML = ' (' + parsedCSV.length - 1 + ')'
+        document.querySelector('#dataset-length').innerHTML = ' (' + (parsedCSV.length - 1) + ')'
     } else {
         document.querySelector('#dataset-length').innerHTML = ' (0)'
     }
