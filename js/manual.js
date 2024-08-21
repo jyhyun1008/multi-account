@@ -113,6 +113,9 @@ async function post(accountIndex, text) {
 }
 
 if (accounts.length > 0 && mode == 'manual') {
+    window.onbeforeunload = function () {
+        return ''; 
+    }
 
     document.querySelector('#mode').innerHTML = '현재 모드는 수동 분류 모드 입니다.'
 
