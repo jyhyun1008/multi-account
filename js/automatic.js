@@ -101,7 +101,7 @@ if (accounts.length > 0 && mode == 'automatic' && localStorage.getItem('gptToken
 
     if (page !== 'signin' && page !=='callback' && page !== 'gpt' && !code) {
 
-        document.querySelector('#post-box').innerHTML = '<div id="post-label">게시하기: <span id="wordcount"></span></div><input id="cw-input" ><div id="post-textarea"><textarea id="post-input" oninput="changeGPTDisabled_a(this)"></textarea></div><button id="gpt-button" disabled="true" onclick="translategpt_a(document.querySelector(`#post-input`).value)">GPT-변환</button><div id="post-classify"><button id="classify-button" disabled="true" onclick="classify(document.querySelector(`#post-input`).value)">분류!</button></div>'
+        document.querySelector('#post-box').innerHTML = '<div id="post-label">게시하기: <span id="wordcount"></span></div><input id="cw-input" placeholder="CW" ><div id="post-textarea"><textarea id="post-input" oninput="changeGPTDisabled_a(this)"></textarea></div><button id="gpt-button" disabled="true" onclick="translategpt_a(document.querySelector(`#post-input`).value)">GPT-변환</button><div id="post-classify"><button id="classify-button" disabled="true" onclick="classify(document.querySelector(`#post-input`).value)">분류!</button></div>'
 
         document.querySelector('#post-box').innerHTML += '<div id="select-box"><select id="select-input" name="account" id="account"></select></div>'
 

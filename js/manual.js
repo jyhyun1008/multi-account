@@ -160,7 +160,7 @@ if (accounts.length > 0 && mode == 'manual') {
 
     if (page !== 'signin' && page !=='callback' && page !== 'gpt' && !code) {
 
-        document.querySelector('#post-box').innerHTML = '<div id="post-label">게시하기: <span id="wordcount"></span></div><input id="cw-input" ><textarea id="post-input" oninput="changePostDisabled(this)"></textarea><button id="gpt-button" disabled="true" onclick="translategpt(document.querySelector(`#post-input`).value)">GPT-변환</button><button id="post-button" disabled="true" onclick="post(parseInt(document.querySelector(`#select-input`).value), document.querySelector(`#post-input`).value)">게시!</button>'
+        document.querySelector('#post-box').innerHTML = '<div id="post-label">게시하기: <span id="wordcount"></span></div><input id="cw-input" placeholder="CW" ><textarea id="post-input" oninput="changePostDisabled(this)"></textarea><button id="gpt-button" disabled="true" onclick="translategpt(document.querySelector(`#post-input`).value)">GPT-변환</button><button id="post-button" disabled="true" onclick="post(parseInt(document.querySelector(`#select-input`).value), document.querySelector(`#post-input`).value)">게시!</button>'
 
         document.querySelector('#post-box').innerHTML += '<div id="select-box"><select id="select-input" name="account" id="account"></select></div>'
 
