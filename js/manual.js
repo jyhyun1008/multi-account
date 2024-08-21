@@ -58,16 +58,35 @@ async function post(accountIndex, text) {
     if (accounts[accountIndex].type == 'misskey') {
 
         var url = 'https://'+accounts[accountIndex].host+'/api/notes/create'
-        var param = {
-            method: 'POST',
-            headers: {
-                'content-type': 'application/json',
-            },
-            body: JSON.stringify({
-                i: accounts[accountIndex].token,
-                text: text,
-                visibility: vis,
-            })
+
+        if (document.querySelector(`#cw-input`).value == '') {
+
+            var param = {
+                method: 'POST',
+                headers: {
+                    'content-type': 'application/json',
+                },
+                body: JSON.stringify({
+                    i: accounts[accountIndex].token,
+                    text: text,
+                    visibility: vis,
+                })
+            }
+        } else {
+            var cw = document.querySelector(`#cw-input`).value
+
+            var param = {
+                method: 'POST',
+                headers: {
+                    'content-type': 'application/json',
+                },
+                body: JSON.stringify({
+                    i: accounts[accountIndex].token,
+                    text: text,
+                    visibility: vis,
+                    cw: cw,
+                })
+            }
         }
     
         var data = await fetch(url, param)
@@ -83,17 +102,36 @@ async function post(accountIndex, text) {
             vis = 'private'
         }
         var url = `https://${accounts[accountIndex].host}/api/v1/statuses`
-        var param = {
-            method: 'POST',
-            headers: {
-                'content-type': 'application/json',
-                'Authorization': `Bearer `+accounts[accountIndex].token,
-            },
-            body: JSON.stringify({
-                status: text,
-                visibility: vis,
-                content_type: 'text/markdown'
-            })
+        if (document.querySelector(`#cw-input`).value == '') {
+
+            var param = {
+                method: 'POST',
+                headers: {
+                    'content-type': 'application/json',
+                    'Authorization': `Bearer `+accounts[accountIndex].token,
+                },
+                body: JSON.stringify({
+                    status: text,
+                    visibility: vis,
+                    content_type: 'text/markdown'
+                })
+            }
+        } else {
+            var cw = document.querySelector(`#cw-input`).value
+
+            var param = {
+                method: 'POST',
+                headers: {
+                    'content-type': 'application/json',
+                    'Authorization': `Bearer `+accounts[accountIndex].token,
+                },
+                body: JSON.stringify({
+                    status: text,
+                    visibility: vis,
+                    content_type: 'text/markdown',
+                    spoiler_text: cw
+                })
+            }
         }
 
         var data = await fetch(url, param)
@@ -105,6 +143,7 @@ async function post(accountIndex, text) {
 
     getTimeLine()
 
+    document.querySelector(`#cw-input`).value = ''
     document.querySelector(`#post-input`).value = ''
     document.querySelector('#gpt-button').disabled = true
     document.querySelector('#post-button').disabled = true
@@ -121,7 +160,7 @@ if (accounts.length > 0 && mode == 'manual') {
 
     if (page !== 'signin' && page !=='callback' && page !== 'gpt' && !code) {
 
-        document.querySelector('#post-box').innerHTML = '<div id="post-label">게시하기: <span id="wordcount"></span></div><textarea id="post-input" oninput="changePostDisabled(this)"></textarea><button id="gpt-button" disabled="true" onclick="translategpt(document.querySelector(`#post-input`).value)">GPT-변환</button><button id="post-button" disabled="true" onclick="post(parseInt(document.querySelector(`#select-input`).value), document.querySelector(`#post-input`).value)">게시!</button>'
+        document.querySelector('#post-box').innerHTML = '<div id="post-label">게시하기: <span id="wordcount"></span></div><input id="cw-input" ><textarea id="post-input" oninput="changePostDisabled(this)"></textarea><button id="gpt-button" disabled="true" onclick="translategpt(document.querySelector(`#post-input`).value)">GPT-변환</button><button id="post-button" disabled="true" onclick="post(parseInt(document.querySelector(`#select-input`).value), document.querySelector(`#post-input`).value)">게시!</button>'
 
         document.querySelector('#post-box').innerHTML += '<div id="select-box"><select id="select-input" name="account" id="account"></select></div>'
 
