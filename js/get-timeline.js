@@ -5,7 +5,11 @@ async function getTimeLine() {
     document.querySelector('#timeline-box').innerHTML = ''
 
     var parsedCSV = csv.split('\n')
-    document.querySelector('#dataset-length').innerHTML = ' (' + parsedCSV.length - 1 + ')'
+    if (parsedCSV.length > 1) {
+        document.querySelector('#dataset-length').innerHTML = ' (' + parsedCSV.length - 1 + ')'
+    } else {
+        document.querySelector('#dataset-length').innerHTML = ' (0)'
+    }
     for (var i=parsedCSV.length - 2; i>-1; i--) {
         var parsedText = parsedCSV[i].split(',')[0]
         var parsedIndex = parseInt(parsedCSV[i].split(',')[1])
