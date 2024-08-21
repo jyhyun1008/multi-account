@@ -130,6 +130,8 @@ button:disabled {
     display: flex;
     flex-direction: column;
     gap: 12px;
+    height: calc(100dvh - 1.6em - 50px);
+    overflow-y: scroll;
 }
 
 .notes {
